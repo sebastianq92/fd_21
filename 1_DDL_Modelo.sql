@@ -64,3 +64,10 @@ create table clientes (
 );
 
 
+
+-- rentas_fin : vista con los rentas que ya fueron terminadas (son los registros que tienen sus campos de devolucion no vacío)
+create view as
+  select * from rentas
+  where fecha_devolucion is not null
+;
+
