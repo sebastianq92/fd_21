@@ -1,11 +1,19 @@
-# diagrama_modelo_base.jpg
+## diagrama_modelo_base.jpg
 
-#### Este diagrama nos muestra el modelo de datos base para el negocio de renta de autos.
+#### Diagrama del modelo de datos base para el negocio de renta de autos.
 
-# 1_DDL_modelo.sql
+## 1_DDL_modelo.sql
 
-#### Es el DDL para las tablas mostradas en el diagrama.
+#### DDL para las tablas mostradas en el diagrama.
 
-# 2_
+## 2_DDL_Tablas_Agregadas.sql
+
+#### DDL para las tablas en las que escribe el ETL.
+
+## 3_ETL_Agregado.sql
+
+#### Stored procedures para agregar la tabla de rentas. 
+
+Instrucciones ETL: 
 
 
