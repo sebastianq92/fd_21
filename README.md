@@ -16,6 +16,7 @@
 
 Instrucciones ETL: 
   Lanzar en cada fecha de corte el procedure "promedio_renta()". Este guarda el agregado de la tabla de rentas en la tabla "rentas_por_auto_agencia".
-  Después de terminar este procedure, ejecutar el segundo procedure "promedio_renta_hist()". Este guarda el resultado del primer procedure en una tabla histórica con la información agregada en distintas fechas de corte.
+  
+  Después guarda este mismo agregado en otra tabla que también tiene agregados en fechas de corte anteriores, "rentas_por_auto_agencia_hist". En esta segunda tabla podemos ver la evolución del tiempo promedio de renta de un auto a través del tiempo, o la velocidad en la que acumuló las rentas que tiene.
 
 
