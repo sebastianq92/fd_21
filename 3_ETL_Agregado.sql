@@ -35,7 +35,6 @@ CREATE OR REPLACE PROCEDURE procedure_name_2()
 LANGUAJE sql
 AS $$
 
-
 INSERT INTO rentas_por_auto_agencia_hist(auto_id, agencia_renta, agencia_devolucion, cantidad_rentas, tiempo_promedio_renta, fecha)
   (select * from rentas_por_auto_agencia)
 $$;
