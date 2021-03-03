@@ -1,25 +1,47 @@
-CREATE OR REPLACE PROCEDURE rentas_promedio_por_auto()
+-- PRIMER PROCEDURE: para el calculo de los agregados en la última fecha de corte
+
+
+CREATE OR REPLACE PROCEDURE promedio_renta()
 LANGUAJE sql
-
--- borramos la tabla 'ultimo' porque esta solo guarda el promedio en la ultima fecha de corte
 AS $$
-TRUNCATE rentas_por_auto_agencia_ultimo;
 
---escribimos el agrupado de la tabla de 
-INSERT INTO rentas_por_auto_agencia_ultimo(variable_1,variable_2,variable_3)
-  (select auto_id, agencia_renta, agencia_devolucion, count(*) as cantidad_rentas,
-    avg(fecha_devolucion - fecha_renta) as tiempo_promedio_renta, 
-    current_date as fecha 
-    --guardamos la fecha en que se calcula el promedio
+-- borramos la tabla que solo guarda el promedio en la ultima fecha de corte
+TRUNCATE rentas_por_auto_agencia;
+
+--escribimos el agrupado de la tabla de rentas usando la vista rentas_fin (esta tiene todas las rentas que ya finalizaron)
+INSERT INTO rentas_por_auto_agencia(auto_id, agencia_renta, agencia_devolucion, cantidad_rentas, tiempo_promedio_renta, fecha)
+  (select auto_id, 
+      agencia_renta, 
+      agencia_devolucion,   
+      count(*) as cantidad_rentas, --contamos cuantas veces ha sido rentado un auto
+      avg(fecha_devolucion - fecha_renta) as tiempo_promedio_renta, --calculamos el tiempo promedio de renta. la diferencia de dos fechas queda como un float en días.
+      current_date as fecha   --guardamos la fecha en que se calcula el promedio
   from rentas_fin rf
   group by 
     auto_id, agencia_renta, agencia_devolucion, current_date
   order by 
     cantidad_rentas, tiempo_promedio_renta, auto_id desc. 
     --al ordenar de forma descendiente quedan hasta arriba la combinacion de auto-lugar renta- lugar devolucion mas comun,
-    --luego la combinacion con mayor timepo promedio de renta y por ultimo el auto con mayor id (que sería el auto más reciente en la tabla de autos)
+    --luego la combinacion con mayor tiempo promedio de renta y por ultimo el auto con mayor id. Este es el auto mas recientemente adquirido.
   )
 $$;
+
+
+
+-- SEGUNDO PROCEDURE: escribe el resultado del procedure anterior en una tabla histórica.
+-- En la tabla histórica podemos observar la evolucion del tiempo promedio de renta para un auto en las distintas fechas de corte.
+
+CREATE OR REPLACE PROCEDURE procedure_name_2()
+LANGUAJE sql
+AS $$
+
+
+INSERT INTO rentas_por_auto_agencia_hist(auto_id, agencia_renta, agencia_devolucion, cantidad_rentas, tiempo_promedio_renta, fecha)
+  (select * from rentas_por_auto_agencia)
+$$;
+
+
+
   
   
   
