@@ -15,5 +15,7 @@
 #### Stored procedures para agregar la tabla de rentas. 
 
 Instrucciones ETL: 
+  Lanzar en cada fecha de corte el procedure "promedio_renta()". Este guarda el agregado de la tabla de rentas en la tabla "rentas_por_auto_agencia".
+  Después de terminar este procedure, ejecutar el segundo procedure "promedio_renta_hist()". Este guarda el resultado del primer procedure en una tabla histórica con la información agregada en distintas fechas de corte.
 
 
