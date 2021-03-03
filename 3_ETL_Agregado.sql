@@ -31,7 +31,7 @@ $$;
 -- SEGUNDO PROCEDURE: escribe el resultado del procedure anterior en una tabla histórica.
 -- En la tabla histórica podemos observar la evolucion del tiempo promedio de renta para un auto en las distintas fechas de corte.
 
-CREATE OR REPLACE PROCEDURE procedure_name_2()
+CREATE OR REPLACE PROCEDURE promedio_renta_hist()
 LANGUAJE sql
 AS $$
 
